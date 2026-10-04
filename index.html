@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maya Massage — Addis Ababa</title>
+    <meta name="description" content="Premium spa & massage in Addis Ababa.">
+    <meta name="theme-color" content="#0f5132">
+
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%230f5132'/%3E%3Ccircle cx='32' cy='32' r='29' fill='none' stroke='%23c9a227' stroke-width='2'/%3E%3Cpath d='M32 14 C 24 22, 20 28, 32 34 C 44 28, 40 22, 32 14 Z' fill='%23e6c453'/%3E%3Cpath d='M32 34 C 24 42, 20 48, 32 54 C 44 48, 40 42, 32 34 Z' fill='%23fdfaf3'/%3E%3C/svg%3E">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Poppins:wght@300;400;500;600&family=Noto+Sans+Ethiopic:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+
+<!-- Language toggle -->
+<button id="langToggle" class="lang-toggle" aria-label="Switch language">
+    <span class="lang-opt lang-en active">EN</span>
+    <span class="lang-opt lang-am">አማ</span>
+</button>
+
+<!-- Navbar -->
+<header class="navbar" id="navbar">
+    <div class="container nav-inner">
+        <a href="#home" class="logo">
+            <span class="logo-mark" aria-hidden="true">
+                <svg viewBox="0 0 64 64" width="38" height="38">
+                    <circle cx="32" cy="32" r="30" fill="#0f5132"/>
+                    <circle cx="32" cy="32" r="29" fill="none" stroke="#c9a227" stroke-width="2"/>
+                    <path d="M32 14 C 24 22, 20 28, 32 34 C 44 28, 40 22, 32 14 Z" fill="#e6c453"/>
+                    <path d="M32 34 C 24 42, 20 48, 32 54 C 44 48, 40 42, 32 34 Z" fill="#fdfaf3"/>
+                </svg>
+            </span>
+            <span class="logo-text">
+                <span class="en">Maya Massage</span>
+                <span class="am">ማያ ማሳጅ</span>
+            </span>
+        </a>
+
+        <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button>
+
+        <nav class="nav-links" id="navLinks">
+            <a href="#home">Home</a>
+            <a href="#services">Services</a>
+            <a href="#about">About</a>
+            <a href="#team">Team</a>
+            <a href="#gallery">Inside</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+
+<!-- ==================== HERO ==================== -->
+<section class="hero" id="home">
+    <img class="hero-bg" src="images/hero.jpg" alt="" fetchpriority="high">
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+        <p class="eyebrow i18n"
+           data-en="Maya Massage"
+           data-am="ማያ ማሳጅ">Maya Massage</p>
+
+        <h1 class="i18n"
+            data-en="Where Your Body Finds Peace."
+            data-am="ሰውነትዎ ሰላም የሚያገኝበት ቦታ።">Where Your Body Finds Peace.</h1>
+
+        <p class="hero-sub i18n"
+           data-en="Come to us in Atlas, Addis Ababa — or call, and we come to you. Home, hotel, or office."
+           data-am="በአትላስ፣ አዲስ አበባ ወደ እኛ ይምጡ — ወይም ይደውሉ፣ እኛ ወደ እርስዎ እንመጣለን። ቤት፣ ሆቴል ወይም ቢሮ።">Come to us in Atlas, Addis Ababa — or call, and we come to you. Home, hotel, or office.</p>
+
+        <div class="hero-buttons">
+            <a href="#services" class="btn btn-primary i18n"
+               data-en="See Our Services"
+               data-am="አገልግሎቶቻችንን ይመልከቱ">See Our Services</a>
+            <a href="tel:+251912345678" class="btn btn-outline">
+                📞 <span class="i18n" data-en="Call Us" data-am="ይደውሉልን">Call Us</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== SERVICES ==================== -->
+<section class="section" id="services">
+    <div class="container">
+        <div class="section-head">
+            <p class="eyebrow i18n" data-en="WHAT WE DO" data-am="ምን እናደርጋለን">WHAT WE DO</p>
+            <h2 class="i18n" data-en="Our Services" data-am="አገልግሎቶቻችን">Our Services</h2>
+        </div>
+
+        <div class="grid grid-3">
+            <div class="card">
+                <div class="card-img"><img src="images/service-outdoor.jpg" alt="Outdoor Service"></div>
+                <div class="card-body">
+                    <h3 class="i18n" data-en="Outdoor Service" data-am="የቤት ውጭ አገልግሎት">Outdoor Service</h3>
+                    <p class="i18n" data-en="We come to you — home, hotel, or office. Available across Addis Ababa." data-am="ወደ እርስዎ እንመጣለን — ቤት፣ ሆቴል ወይም ቢሮ። በመላው አዲስ አበባ ይገኛል።">We come to you — home, hotel, or office. Available across Addis Ababa.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img"><img src="images/service-massage.jpg" alt="Massage"></div>
+                <div class="card-body">
+                    <h3 class="i18n" data-en="Full Body Massage" data-am="የሙሉ ሰውነት ማሳጅ">Full Body Massage</h3>
+                    <p class="i18n" data-en="Gentle strokes that ease tight muscles and calm your whole body." data-am="የደረቁ ጡንቻዎችን የሚያላሉ ለስላሳ እንቅስቃሴዎች።">Gentle strokes that ease tight muscles and calm your whole body.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img"><img src="images/service-facial.jpg" alt="Facial"></div>
+                <div class="card-body">
+                    <h3 class="i18n" data-en="Facial Care" data-am="የፊት እንክብካቤ">Facial Care</h3>
+                    <p class="i18n" data-en="Cleans, softens, and brightens your face." data-am="ፊትዎን የሚያጸዳ እና የሚያበራ።">Cleans, softens, and brightens your face.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img"><img src="images/service-b2b.jpg" alt="Body to Body"></div>
+                <div class="card-body">
+                    <h3 class="i18n" data-en="Body to Body Massage" data-am="ቦዲ ቱ ቦዲ ማሳጅ">Body to Body Massage</h3>
+                    <p class="i18n" data-en="A relaxing full-contact massage performed by our trained therapists." data-am="በሰለጠኑ ባለሙያዎቻችን የሚሰጥ ሙሉ የሰውነት ማሳጅ።">A relaxing full-contact massage performed by our trained therapists.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img"><img src="images/service-hotstone.jpg" alt="Hot Stone"></div>
+                <div class="card-body">
+                    <h3 class="i18n" data-en="Hot Stone Massage" data-am="ትኩስ ድንጋይ ማሳጅ">Hot Stone Massage</h3>
+                    <p class="i18n" data-en="Warm stones placed on your back to melt deep pain away." data-am="በጀርባዎ ላይ የሚቀመጡ ሞቃት ድንጋዮች።">Warm stones placed on your back to melt deep pain away.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img"><img src="images/service-aroma.jpg" alt="Aromatherapy"></div>
+                <div class="card-body">
+                    <h3 class="i18n" data-en="Aromatherapy" data-am="አሮማቴራፒ">Aromatherapy</h3>
+                    <p class="i18n" data-en="Natural oils with soft scents that help you breathe deeper." data-am="ለስላሳ መዓዛ ያላቸው ተፈጥሯዊ ዘይቶች።">Natural oils with soft scents that help you breathe deeper.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img"><img src="images/service-body.jpg" alt="Body Scrub"></div>
+                <div class="card-body">
+                    <h3 class="i18n" data-en="Body Scrub" data-am="የሰውነት ማጽዳት">Body Scrub</h3>
+                    <p class="i18n" data-en="Removes dead skin and leaves your body soft and smooth." data-am="የሞተ ቆዳን ያስወግዳል እና ሰውነትዎን ለስላሳ ያደርገዋል።">Removes dead skin and leaves your body soft and smooth.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img"><img src="images/service-hair.jpg" alt="Hair & Scalp"></div>
+                <div class="card-body">
+                    <h3 class="i18n" data-en="Hair & Scalp Treatment" data-am="የፀጉር እና የራስ ቆዳ እንክብካቤ">Hair & Scalp Treatment</h3>
+                    <p class="i18n" data-en="Nourishing oils massaged into your scalp to relax, hydrate, and strengthen hair." data-am="ራስዎን ለማረጋጋት እና ፀጉርዎን ለማጠናከር የሚያገለግሉ የተፈጥሮ ዘይቶች።">Nourishing oils massaged into your scalp to relax, hydrate, and strengthen hair.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img"><img src="images/service-couple.jpg" alt="Couples"></div>
+                <div class="card-body">
+                    <h3 class="i18n" data-en="Couples Massage" data-am="የጥንዶች ማሳጅ">Couples Massage</h3>
+                    <p class="i18n" data-en="Two people, one room, side by side." data-am="ሁለት ሰዎች፣ አንድ ክፍል፣ ጎን ለጎን።">Two people, one room, side by side.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== ABOUT ==================== -->
+<section class="section section-alt" id="about">
+    <div class="container about-grid">
+        <div class="about-img">
+            <img src="images/about.jpg" alt="Inside Maya Massage">
+        </div>
+
+        <div class="about-text">
+            <p class="eyebrow i18n" data-en="ABOUT US" data-am="ስለኛ">ABOUT US</p>
+
+            <h2 class="i18n" data-en="More Than a Massage. A Real Escape." data-am="ከማሳጅ በላይ። እውነተኛ ማረፊያ።">More Than a Massage. A Real Escape.</h2>
+
+            <p class="i18n"
+               data-en="Maya Massage is not a big hotel chain — it's a small, family-run place in Atlas, Addis Ababa. We know our guests by name, remember how you like your oil, and always have a warm towel waiting."
+               data-am="ማያ ማሳጅ ትልቅ የሆቴል ሰንሰለት አይደለም — በአትላስ፣ አዲስ አበባ የሚገኝ ትንሽ የቤተሰብ ስፓ ነው። እንግዶቻችንን በስም እናውቃለን፣ ዘይት እንዴት እንደሚወዱ እናስታውሳለን፣ እና ሁልጊዜ ሞቃት ፎጣ ይጠብቅዎታል።">Maya Massage is not a big hotel chain — it's a small, family-run place in Atlas, Addis Ababa. We know our guests by name, remember how you like your oil, and always have a warm towel waiting.</p>
+
+            <p class="i18n"
+               data-en="Our therapists train for years before they ever touch a client. We only use natural oils — no cheap chemicals, no shortcuts. Every treatment is adjusted to your body, not copied from a manual."
+               data-am="ባለሙያዎቻችን አንድ እንግዳ ከመያዛቸው በፊት ለዓመታት ይሰለጥናሉ። ተፈጥሯዊ ዘይቶችን ብቻ እንጠቀማለን — ርካሽ ኬሚካሎችም ሆነ አቋራጭ መንገዶች የሉም። እያንዳንዱ ህክምና ከመጽሐፍ ተቀድቶ ሳይሆን ለሰውነትዎ ተስማሚ ሆኖ ይሰራል።">Our therapists train for years before they ever touch a client. We only use natural oils — no cheap chemicals, no shortcuts. Every treatment is adjusted to your body, not copied from a manual.</p>
+
+            <p class="i18n"
+               data-en="Can't come to us? We come to you. Our outdoor service brings the same professional massage to your home, hotel, or office — anywhere in Addis Ababa."
+               data-am="ወደ እኛ መምጣት አልቻሉም? እኛ ወደ እርስዎ እንመጣለን። የቤት ውጭ አገልግሎታችን ተመሳሳይ ሙያዊ ማሳጅን ወደ ቤትዎ፣ ሆቴልዎ ወይም ቢሮዎ ያመጣል — በመላው አዲስ አበባ።">Can't come to us? We come to you. Our outdoor service brings the same professional massage to your home, hotel, or office — anywhere in Addis Ababa.</p>
+
+            <p class="i18n"
+               data-en="Come once — you'll understand. No appointment needed. Just walk in, or call us first if you want to be sure we're free."
+               data-am="አንድ ጊዜ ይምጡ — ይረዱታል። ቀን መያዝ አያስፈልግም። በቀላሉ ይምጡ፣ ወይም ነጻ መሆናችንን ለማረጋገጥ በፊት ይደውሉልን።">Come once — you'll understand. No appointment needed. Just walk in, or call us first if you want to be sure we're free.</p>
+
+            <ul class="features">
+                <li class="i18n" data-en="✓ Therapists trained for years, not weeks" data-am="✓ ለሳምንታት ሳይሆን ለዓመታት የሰለጠኑ ባለሙያዎች">✓ Therapists trained for years, not weeks</li>
+                <li class="i18n" data-en="✓ 100% natural oils — nothing cheap" data-am="✓ 100% ተፈጥሯዊ ዘይቶች — ርካሽ ነገር የለም">✓ 100% natural oils — nothing cheap</li>
+                <li class="i18n" data-en="✓ Private rooms for men and women" data-am="✓ ለወንዶች እና ለሴቶች የተለያዩ የግል ክፍሎች">✓ Private rooms for men and women</li>
+                <li class="i18n" data-en="✓ Clean towels, warm rooms, calm music" data-am="✓ ንጹህ ፎጣዎች፣ ሞቃት ክፍሎች፣ ዘና የሚያደርግ ሙዚቃ">✓ Clean towels, warm rooms, calm music</li>
+                <li class="i18n" data-en="✓ Outdoor service — we come to your home, hotel or office" data-am="✓ የቤት ውጭ አገልግሎት — ወደ ቤትዎ፣ ሆቴልዎ ወይም ቢሮዎ እንመጣለን">✓ Outdoor service — we come to your home, hotel or office</li>
+                <li class="i18n" data-en="✓ Open every day, morning to night — walk-ins welcome" data-am="✓ በየቀኑ ከጠዋት እስከ ማታ ክፍት — ያለ ቀን ቢመጡም እንቀበላለን">✓ Open every day, morning to night — walk-ins welcome</li>
+                <li class="i18n" data-en="✓ Men and women therapists available" data-am="✓ ወንድ እና ሴት ባለሙያዎች አሉን">✓ Men and women therapists available</li>
+                <li class="i18n" data-en="✓ Cash, Telebirr and bank transfer accepted" data-am="✓ ጥሬ ገንዘብ፣ ቴሌብር እና የባንክ ዝውውር እንቀበላለን">✓ Cash, Telebirr and bank transfer accepted</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== TEAM ==================== -->
+<section class="section team-section" id="team">
+    <div class="container">
+        <div class="section-head">
+            <p class="eyebrow i18n" data-en="MEET THE TEAM" data-am="ባለሙያዎቻችን">MEET THE TEAM</p>
+            <h2 class="i18n" data-en="Our Therapists" data-am="የእኛ ባለሙያዎች">Our Therapists</h2>
+            <p class="lead i18n" data-en="Trained, kind, and always ready to help you relax." data-am="የሰለጠኑ፣ ቸር እና ሁልጊዜ እርስዎን ለማገዝ ዝግጁ።">Trained, kind, and always ready to help you relax.</p>
+        </div>
+    </div>
+
+    <div class="team-slider-wrap">
+        <button class="team-arrow team-prev" id="teamPrev" aria-label="Previous">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+
+        <div class="team-viewport">
+            <div class="team-track" id="teamTrack">
+
+                <div class="team-card">
+                    <div class="team-photo"><img src="images/team-1.jpg" alt="Sara" loading="lazy"></div>
+                    <div class="team-info">
+                        <h3 class="i18n" data-en="Sara" data-am="ሳራ">Sara</h3>
+                        <p class="team-role i18n" data-en="Senior Massage Therapist" data-am="ከፍተኛ የማሳጅ ባለሙያ">Senior Massage Therapist</p>
+                        <p class="team-bio i18n" data-en="8 years of experience in Swedish and deep tissue massage." data-am="8 ዓመታት በስዊድን እና ጥልቅ ማሳጅ ልምድ አላት።">8 years of experience in Swedish and deep tissue massage.</p>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-photo"><img src="images/team-2.jpg" alt="Hanna" loading="lazy"></div>
+                    <div class="team-info">
+                        <h3 class="i18n" data-en="Hanna" data-am="ሃና">Hanna</h3>
+                        <p class="team-role i18n" data-en="Facial & Skin Care Specialist" data-am="የፊት እና የቆዳ ባለሙያ">Facial & Skin Care Specialist</p>
+                        <p class="team-bio i18n" data-en="Expert in facials, scrubs, and natural skin treatments." data-am="በፊት ህክምና፣ ስክራብ እና ተፈጥሯዊ የቆዳ እንክብካቤ ልዩ ባለሙያ ናት።">Expert in facials, scrubs, and natural skin treatments.</p>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-photo"><img src="images/team-3.jpg" alt="Marta" loading="lazy"></div>
+                    <div class="team-info">
+                        <h3 class="i18n" data-en="Marta" data-am="ማርታ">Marta</h3>
+                        <p class="team-role i18n" data-en="Hot Stone & Aromatherapy Expert" data-am="የትኩስ ድንጋይ እና አሮማቴራፒ ባለሙያ">Hot Stone & Aromatherapy Expert</p>
+                        <p class="team-bio i18n" data-en="Specializes in deep relaxation and stress relief." data-am="በጥልቅ እረፍት እና ጭንቀት ማስወገድ ላይ ትሰራለች።">Specializes in deep relaxation and stress relief.</p>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-photo"><img src="images/team-4.jpg" alt="Bethlehem & Mimi" loading="lazy"></div>
+                    <div class="team-info">
+                        <h3 class="i18n" data-en="Bethlehem & Mimi" data-am="ቤተልሔም & ሚሚ">Bethlehem & Mimi</h3>
+                        <p class="team-role i18n" data-en="Body-to-Body Specialist" data-am="የቦዲ ቱ ቦዲ ባለሙያ">Body-to-Body Specialist</p>
+                        <p class="team-bio i18n" data-en="Trained in advanced body therapy techniques." data-am="በከፍተኛ የሰውነት ህክምና ቴክኒኮች የሰለጠነች።">Trained in advanced body therapy techniques.</p>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-photo"><img src="images/team-5.jpg" alt="Tigist" loading="lazy"></div>
+                    <div class="team-info">
+                        <h3 class="i18n" data-en="Tigist" data-am="ትዕግስት">Tigist</h3>
+                        <p class="team-role i18n" data-en="Reflexology & Foot Massage" data-am="ሪፍሌክሶሎጂ እና የእግር ማሳጅ">Reflexology & Foot Massage</p>
+                        <p class="team-bio i18n" data-en="Specialist in foot pressure points and tired legs." data-am="በእግር ግፊት ነጥቦች እና የደከሙ እግሮች ላይ ልዩ ባለሙያ ናት።">Specialist in foot pressure points and tired legs.</p>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-photo"><img src="images/team-6.jpg" alt="Rahel" loading="lazy"></div>
+                    <div class="team-info">
+                        <h3 class="i18n" data-en="Rahel" data-am="ራሔል">Rahel</h3>
+                        <p class="team-role i18n" data-en="Body Scrub & Wrap Expert" data-am="የሰውነት ስክራብ ባለሙያ">Body Scrub & Wrap Expert</p>
+                        <p class="team-bio i18n" data-en="Natural scrubs and skin-softening wraps." data-am="ተፈጥሯዊ ስክራቦች እና ቆዳን የሚያለሰልሱ መጠቅለያዎች።">Natural scrubs and skin-softening wraps.</p>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-photo"><img src="images/team-7.jpg" alt="Selam" loading="lazy"></div>
+                    <div class="team-info">
+                        <h3 class="i18n" data-en="Selam" data-am="ሰላም">Selam</h3>
+                        <p class="team-role i18n" data-en="Couples Massage Specialist" data-am="የጥንዶች ማሳጅ ባለሙያ">Couples Massage Specialist</p>
+                        <p class="team-bio i18n" data-en="Perfect for anniversaries and special days." data-am="ለተወሰነ ቀን እና ለልዩ ዝግጅት ተስማሚ ናት።">Perfect for anniversaries and special days.</p>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-photo"><img src="images/team-8.jpg" alt="Mimi" loading="lazy"></div>
+                    <div class="team-info">
+                        <h3 class="i18n" data-en="Mimi" data-am="ሚሚ">Mimi</h3>
+                        <p class="team-role i18n" data-en="Outdoor Service Therapist" data-am="የቤት ውጭ አገልግሎት ባለሙያ">Outdoor Service Therapist</p>
+                        <p class="team-bio i18n" data-en="Comes to your home, hotel, or office." data-am="ወደ ቤትዎ፣ ሆቴልዎ ወይም ቢሮዎ ትመጣለች።">Comes to your home, hotel, or office.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <button class="team-arrow team-next" id="teamNext" aria-label="Next">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+    </div>
+
+    <div class="team-dots" id="teamDots"></div>
+</section>
+
+<!-- ==================== GALLERY ==================== -->
+<section class="section gallery-section" id="gallery">
+    <div class="container">
+        <div class="section-head">
+            <p class="eyebrow i18n" data-en="OUR PLACE" data-am="የእኛ ቦታ">OUR PLACE</p>
+            <h2 class="i18n" data-en="Inside Maya Massage" data-am="በማያ ማሳጅ ውስጥ">Inside Maya Massage</h2>
+            <p class="lead i18n" data-en="A quiet look inside our spa — every room, every detail. Click any photo to see it bigger." data-am="የእኛን ስፓ ውስጥ ያለ ጸጥ ያለ እይታ — እያንዳንዱ ክፍል፣ እያንዳንዱ ዝርዝር። ፎቶውን ለማጉላት ይንኩት።">A quiet look inside our spa — every room, every detail. Click any photo to see it bigger.</p>
+        </div>
+
+        <div class="gallery" id="galleryGrid">
+
+            <figure class="gallery-item">
+                <img src="images/gallery1.jpg" alt="Treatment room" loading="lazy">
+                <figcaption>
+                    <h4 class="i18n" data-en="Treatment Room" data-am="የህክምና ክፍል">Treatment Room</h4>
+                    <p class="i18n" data-en="Clean, quiet, and private. Every room has its own warm towels and soft lighting." data-am="ንጹህ፣ ጸጥ ያለ እና የግል። እያንዳንዱ ክፍል የራሱ ሞቃት ፎጣዎች እና ለስላሳ መብራት አለው።">Clean, quiet, and private. Every room has its own warm towels and soft lighting.</p>
+                </figcaption>
+            </figure>
+
+            <figure class="gallery-item">
+                <img src="images/gallery2.jpg" alt="Massage table" loading="lazy">
+                <figcaption>
+                    <h4 class="i18n" data-en="Massage Table" data-am="የማሳጅ አልጋ">Massage Table</h4>
+                    <p class="i18n" data-en="Professional tables with fresh linens for every guest — no exceptions." data-am="ለእያንዳንዱ እንግዳ አዲስ ጨርቅ ያለው ሙያዊ አልጋ — ምንም ልዩነት የለም።">Professional tables with fresh linens for every guest — no exceptions.</p>
+                </figcaption>
+            </figure>
+
+            <figure class="gallery-item">
+                <img src="images/gallery3.jpg" alt="Oils" loading="lazy">
+                <figcaption>
+                    <h4 class="i18n" data-en="Oils & Towels" data-am="ዘይቶች እና ፎጣዎች">Oils & Towels</h4>
+                    <p class="i18n" data-en="100% natural oils. No cheap chemicals, no shortcuts — only what we'd use ourselves." data-am="100% ተፈጥሯዊ ዘይቶች። ርካሽ ኬሚካሎች የሉም፣ አቋራጭ መንገዶች የሉም — ራሳችን የምንጠቀምበት ብቻ።">100% natural oils. No cheap chemicals, no shortcuts — only what we'd use ourselves.</p>
+                </figcaption>
+            </figure>
+
+            <figure class="gallery-item">
+                <img src="images/gallery4.jpg" alt="Reception" loading="lazy">
+                <figcaption>
+                    <h4 class="i18n" data-en="Reception" data-am="መቀበያ">Reception</h4>
+                    <p class="i18n" data-en="Walk in and you'll be greeted with warm tea and a smile. No appointments needed." data-am="ገብተው በሞቃት ሻይ እና በፈገግታ ይቀበላሉ። ቀን መያዝ አያስፈልግም።">Walk in and you'll be greeted with warm tea and a smile. No appointments needed.</p>
+                </figcaption>
+            </figure>
+
+            <figure class="gallery-item">
+                <img src="images/gallery5.jpg" alt="Relax area" loading="lazy">
+                <figcaption>
+                    <h4 class="i18n" data-en="Relax Area" data-am="የእረፍት ቦታ">Relax Area</h4>
+                    <p class="i18n" data-en="Come early, sit back, and let your body slow down before your treatment begins." data-am="ህክምናዎ ከመጀመሩ በፊት ቀድመው ይምጡ፣ ይቀመጡ፣ እና ሰውነትዎ እንዲዝናና ይፍቀዱ።">Come early, sit back, and let your body slow down before your treatment begins.</p>
+                </figcaption>
+            </figure>
+
+            <figure class="gallery-item">
+                <img src="images/gallery6.jpg" alt="Little details" loading="lazy">
+                <figcaption>
+                    <h4 class="i18n" data-en="Little Details" data-am="ትንንሽ ዝርዝሮች">Little Details</h4>
+                    <p class="i18n" data-en="Fresh flowers, candles, calm music — small touches that make a big difference." data-am="አዲስ አበቦች፣ ሻማዎች፣ ዘና የሚያደርግ ሙዚቃ — ትልቅ ለውጥ የሚያመጡ ትንንሽ ነገሮች።">Fresh flowers, candles, calm music — small touches that make a big difference.</p>
+                </figcaption>
+            </figure>
+
+            <figure class="gallery-item">
+                <img src="images/gallery7.jpg" alt="Hot stone setup" loading="lazy">
+                <figcaption>
+                    <h4 class="i18n" data-en="Hot Stone Setup" data-am="የትኩስ ድንጋይ ዝግጅት">Hot Stone Setup</h4>
+                    <p class="i18n" data-en="Warm basalt stones, heated to the perfect temperature, ready for your back." data-am="ለጀርባዎ ዝግጁ የሆኑ፣ በትክክለኛው ሙቀት የሚሞቁ የባዝልት ድንጋዮች።">Warm basalt stones, heated to the perfect temperature, ready for your back.</p>
+                </figcaption>
+            </figure>
+
+            <figure class="gallery-item">
+                <img src="images/gallery8.jpg" alt="Private room" loading="lazy">
+                <figcaption>
+                    <h4 class="i18n" data-en="Private Rooms" data-am="የግል ክፍሎች">Private Rooms</h4>
+                    <p class="i18n" data-en="Separate rooms for men and women — your comfort and privacy come first." data-am="ለወንዶች እና ለሴቶች የተለያዩ ክፍሎች — ምቾትዎ እና ግላዊነትዎ ቅድሚያ ይሰጣቸዋል።">Separate rooms for men and women — your comfort and privacy come first.</p>
+                </figcaption>
+            </figure>
+
+            <figure class="gallery-item">
+                <img src="images/gallery9.jpg" alt="Couples suite" loading="lazy">
+                <figcaption>
+                    <h4 class="i18n" data-en="Couples Suite" data-am="የጥንዶች ክፍል">Couples Suite</h4>
+                    <p class="i18n" data-en="Side-by-side tables for couples, friends, or family who want to relax together." data-am="አብረው ማረፍ ለሚፈልጉ ጥንዶች፣ ጓደኞች ወይም ቤተሰቦች ጎን ለጎን አልጋዎች።">Side-by-side tables for couples, friends, or family who want to relax together.</p>
+                </figcaption>
+            </figure>
+
+            <figure class="gallery-item">
+                <img src="images/gallery10.jpg" alt="After treatment" loading="lazy">
+                <figcaption>
+                    <h4 class="i18n" data-en="After Your Treatment" data-am="ከህክምና በኋላ">After Your Treatment</h4>
+                    <p class="i18n" data-en="A cup of tea and a few quiet minutes before you head back out into the world." data-am="ወደ ውጭ ዓለም ከመመለስዎ በፊት አንድ ኩባያ ሻይ እና ጥቂት ጸጥ ያሉ ደቂቃዎች።">A cup of tea and a few quiet minutes before you head back out into the world.</p>
+                </figcaption>
+            </figure>
+
+        </div>
+    </div>
+</section>
+
+<!-- ==================== LIGHTBOX ==================== -->
+<div class="gallery-lightbox" id="galleryLightbox" aria-hidden="true">
+    <button class="glb-close" id="glbClose" aria-label="Close">×</button>
+    <button class="glb-nav glb-prev" id="glbPrev" aria-label="Previous">
+        <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <button class="glb-nav glb-next" id="glbNext" aria-label="Next">
+        <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+
+    <div class="glb-content">
+        <img id="glbImage" src="" alt="">
+        <div class="glb-info">
+            <h3 class="glb-title" id="glbTitle"></h3>
+            <p class="glb-desc" id="glbDesc"></p>
+        </div>
+    </div>
+
+    <div class="glb-counter" id="glbCounter">1 / 10</div>
+</div>
+
+<!-- ==================== CTA ==================== -->
+<section class="cta">
+    <div class="container">
+        <h2 class="i18n" data-en="Your Body Deserves This." data-am="ሰውነትዎ ይህን ይገባዋል።">Your Body Deserves This.</h2>
+        <div class="cta-buttons">
+            <a href="tel:+251912345678" class="btn btn-light">📞 +251 90 152 9697</a>
+            <a href="https://wa.me/251901529697" target="_blank" rel="noopener" class="btn btn-whatsapp">💬 WhatsApp</a>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== CONTACT ==================== -->
+<section class="section" id="contact">
+    <div class="container contact-grid">
+        <div>
+            <p class="eyebrow i18n" data-en="FIND US" data-am="ያግኙን">FIND US</p>
+            <h2 class="i18n" data-en="Come Visit" data-am="ይምጡ">Come Visit</h2>
+            <ul class="contact-list">
+                <li>
+                    <strong>Address:</strong>
+                    <span class="i18n" data-en="Atlas Road, Addis Ababa, Ethiopia" data-am="አትላስ ፣ አዲስ አበባ፣ ኢትዮጵያ">Atlas Road, Addis Ababa, Ethiopia</span>
+                </li>
+                <li>
+                    <strong>Phone:</strong>
+                    <a href="tel:+251912345678">+251 90 152 9697</a>
+                </li>
+                <li>
+                    <strong>Hours:</strong>
+                    <span class="i18n" data-en="Mon–Sun · 24 Hour" data-am="ሰኞ–እሁድ · 24 ሰአት">Mon–Sun · 24 Hour</span>
+                </li>
+            </ul>
+        </div>
+        <div class="map-wrap">
+            <iframe class="map-iframe"
+                src="https://maps.google.com/maps?q=Atlas+Road+Addis+Ababa+Ethiopia&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                width="100%" height="100%" style="border:0;"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Maya Massage location">
+            </iframe>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="footer">
+    <div class="container footer-inner">
+
+        <div class="footer-brand">
+            <div class="footer-logo">
+                <svg viewBox="0 0 64 64" width="48" height="48" aria-hidden="true">
+                    <circle cx="32" cy="32" r="30" fill="#0f5132"/>
+                    <circle cx="32" cy="32" r="29" fill="none" stroke="#c9a227" stroke-width="2"/>
+                    <path d="M32 14 C 24 22, 20 28, 32 34 C 44 28, 40 22, 32 14 Z" fill="#e6c453"/>
+                    <path d="M32 34 C 24 42, 20 48, 32 54 C 44 48, 40 42, 32 34 Z" fill="#fdfaf3"/>
+                    <path d="M32 18 L32 50" stroke="#0f5132" stroke-width="1.3" stroke-linecap="round" opacity="0.7"/>
+                </svg>
+                <div class="footer-logo-text">
+                    <span class="footer-logo-en">Maya Massage</span>
+                    <span class="footer-logo-am">ማያ ማሳጅ</span>
+                </div>
+            </div>
+            <p class="footer-tagline i18n" data-en="Where Your Body Finds Peace." data-am="ሰውነትዎ ሰላም የሚያገኝበት ቦታ።">Where Your Body Finds Peace.</p>
+        </div>
+
+        <div class="footer-col">
+            <h4 class="i18n" data-en="Visit Us" data-am="ይጎብኙን">Visit Us</h4>
+            <p class="i18n" data-en="Atlas Road, Addis Ababa, Ethiopia" data-am="አትላስ ፣ አዲስ አበባ፣ ኢትዮጵያ">Atlas Road, Addis Ababa, Ethiopia</p>
+            <p class="i18n" data-en="Mon–Sun · 24 Hour" data-am="ሰኞ–እሁድ · 24 ሰአት">Mon–Sun · 24 Hour</p>
+        </div>
+
+        <div class="footer-col">
+            <h4 class="i18n" data-en="Contact" data-am="አግኙን">Contact</h4>
+            <p>📞 <a href="tel:+251912345678" class="footer-link">+251 90 152 9697</a></p>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <span>© 2026 Maya Massage &amp; Massage · All rights reserved</span>
+    </div>
+</footer>
+
+<!-- WhatsApp -->
+<a href="https://wa.me/251901529697" class="float-btn whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <svg viewBox="0 0 32 32" width="26" height="26" fill="currentColor">
+        <path d="M16 3C9.4 3 4 8.4 4 15c0 2.3.6 4.5 1.8 6.4L4 29l7.8-1.7c1.8 1 3.9 1.5 6 1.5h.1C24.6 28.8 30 23.4 30 16.8 30 10.2 24.6 3 16 3zm0 22.6c-1.9 0-3.7-.5-5.3-1.5l-.4-.2-4.6 1 1-4.5-.3-.4A11.4 11.4 0 0 1 4.6 15C4.6 8.8 9.8 4.4 16 4.4S27.4 8.8 27.4 15c0 6.2-5.1 10.6-11.4 10.6z"/>
+    </svg>
+</a>
+
+<!-- Call -->
+<a href="tel:+251912345678" class="float-btn call-float" aria-label="Call">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+        <path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.5.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.5.1.3 0 .7-.2 1l-2.3 2.3z"/>
+    </svg>
+</a>
+
+<!-- Scroll to top -->
+<button id="scrollTop" class="scroll-top" aria-label="Scroll to top">
+    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+</body>
+</html>
