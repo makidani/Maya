@@ -407,17 +407,15 @@
         const closeBtn = document.getElementById('bookingModalClose');
         const sendTelegram = document.getElementById('sendTelegram');
         const sendWhatsapp = document.getElementById('sendWhatsapp');
-        const submitBtn = document.getElementById('submitBtn');
-        const formError = document.getElementById('formError');
 
         if (!form || !modal) return;
 
-        // Business constants
-        const BUSINESS_PHONE = '251901529662';
-        const BUSINESS_TELEGRAM = 'Makkkk17';
-        const BUSINESS_EMAIL = 'mayamassage@gmail.com';
+        // ============ BUSINESS INFO — CHANGE HERE ============
+        const BUSINESS_PHONE = '251901529662';        // WhatsApp — international, no +
+        const BUSINESS_TELEGRAM = 'Makkkk17';         // Telegram username (no @)
+        const BUSINESS_EMAIL = 'makidani116@gmail.com';
+        // =====================================================
 
-        // Field references
         const contactType = document.getElementById('contactType');
         const phoneRow = document.getElementById('phoneRow');
         const emailRow = document.getElementById('emailRow');
@@ -427,6 +425,7 @@
         const serviceField = document.getElementById('serviceField');
         const dateField = document.getElementById('preferredDate');
         const messageField = document.getElementById('messageField');
+        const formError = document.getElementById('formError');
 
         /* ---------- Contact type toggle ---------- */
         function updateContactFields() {
@@ -463,14 +462,10 @@
         }
         setMinDate();
 
-        /* ---------- Phone input: filter to digits only ---------- */
+        /* ---------- Phone input: digits only ---------- */
         phoneField.addEventListener('input', function () {
-            // Strip everything except digits
             let digits = phoneField.value.replace(/\D/g, '');
-
-            // Cap at 10 digits (Ethiopian local max)
             if (digits.length > 10) digits = digits.slice(0, 10);
-
             phoneField.value = digits;
             hideError();
         });
@@ -498,59 +493,92 @@
             document.body.style.overflow = '';
         }
 
-        /* ---------- Normalize Ethiopian phone number ---------- */
-        // Accepts: 09..., 07..., 9..., 7...  →  returns full international like 251901...
+        /* ---------- Normalize Ethiopian phone ---------- */
         function normalizePhone(raw) {
             let digits = String(raw).replace(/\D/g, '');
-
-            // Strip any leading 251 if user typed it
-            if (digits.startsWith('251') && digits.length > 9) {
-                digits = digits.slice(3);
-            }
-
-            // Remove leading 0 if present
-            if (digits.startsWith('0')) {
-                digits = digits.slice(1);
-            }
-
-            // Must now start with 9 or 7
-            if (!/^[97]/.test(digits)) {
-                return null;
-            }
-
-            // Must be 9 digits after removing 0
-            if (digits.length !== 9) {
-                return null;
-            }
-
+            if (digits.startsWith('251') && digits.length > 9) digits = digits.slice(3);
+            if (digits.startsWith('0')) digits = digits.slice(1);
+            if (!/^[97]/.test(digits)) return null;
+            if (digits.length !== 9) return null;
             return '251' + digits;
         }
 
         function validatePhone(raw) {
             const digits = String(raw).replace(/\D/g, '');
             if (!digits) return 'Please enter your phone number.';
-
             const full = normalizePhone(digits);
-            if (!full) {
-                return 'Please enter a valid Ethiopian phone number (e.g. 0912 345 678).';
-            }
+            if (!full) return 'Please enter a valid Ethiopian phone number (e.g. 0912 345 678).';
             return '';
         }
 
-        /* ---------- Build the message ---------- */
-        function buildMessage(contactValue) {
+        /* ---------- Format date nicely ---------- */
+        function formatDate(iso) {
+            if (!iso) return '';
+            const d = new Date(iso + 'T00:00:00');
+            const months = ['January','February','March','April','May','June',
+                            'July','August','September','October','November','December'];
+            return months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
+        }
+
+        /* ---------- Detect current language ---------- */
+        function currentLang() {
+            return document.documentElement.getAttribute('data-lang') || 'en';
+        }
+
+        /* ---------- Build beautiful bilingual message ---------- */
+        function buildMessage(customerContact) {
             const name = (nameField.value || '').trim();
             const service = serviceField.value || '';
             const date = dateField.value || '';
-            const message = (messageField.value || '').trim();
+            const note = (messageField.value || '').trim();
+            const isAm = currentLang() === 'am';
 
-            let text = 'New Booking Request — Maya Massage\n\n';
-            text += 'Name: ' + name + '\n';
-            text += 'Contact: ' + contactValue + '\n';
-            text += 'Service: ' + service + '\n';
-            if (date) text += 'Preferred Date: ' + date + '\n';
-            if (message) text += 'Message: ' + message + '\n';
-            return text;
+            // Bilingual greeting
+            const greeting = '🌿 Hello Maya Massage / ሰላም ማያ ማሳጅ 🌿';
+
+            const labelName    = isAm ? 'ስም' : 'Name';
+            const labelContact = isAm ? 'የመገኛ መንገድ' : 'Contact';
+            const labelService = isAm ? 'አገልግሎት' : 'Service';
+            const labelDate    = isAm ? 'የሚፈልጉት ቀን' : 'Preferred Date';
+            const labelNote    = isAm ? 'ተጨማሪ መልእክት' : 'Message';
+
+            const thanks = isAm
+                ? '🙏 እባክዎ ይህንን ጥያቄ ያረጋግጡልኝ። አመሰግናለሁ!'
+                : '🙏 Please confirm this booking. Thank you!';
+
+            const line = '━━━━━━━━━━━━━━━━━━━━━';
+
+            let msg = greeting + '\n\n';
+            msg += '📋 ' + (isAm ? 'አዲስ የቀን ጥያቄ' : 'New Booking Request') + '\n';
+            msg += line + '\n';
+            msg += '👤 ' + labelName + ': ' + name + '\n';
+            msg += '📞 ' + labelContact + ': ' + customerContact + '\n';
+            msg += '💆 ' + labelService + ': ' + service + '\n';
+            if (date) msg += '📅 ' + labelDate + ': ' + formatDate(date) + '\n';
+            if (note) msg += '\n💬 ' + labelNote + ':\n' + note + '\n';
+            msg += line + '\n\n';
+            msg += thanks;
+
+            return msg;
+        }
+
+        /* ---------- Copy to clipboard with fallback ---------- */
+        function copyToClipboard(text) {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                return navigator.clipboard.writeText(text);
+            }
+            // Fallback for older browsers
+            return new Promise(function (resolve) {
+                const ta = document.createElement('textarea');
+                ta.value = text;
+                ta.style.position = 'fixed';
+                ta.style.opacity = '0';
+                document.body.appendChild(ta);
+                ta.select();
+                try { document.execCommand('copy'); } catch (e) {}
+                document.body.removeChild(ta);
+                resolve();
+            });
         }
 
         /* ---------- Handle submit ---------- */
@@ -562,19 +590,16 @@
             const service = serviceField.value;
             const type = contactType.value;
 
-            // Name validation
             if (!name || name.length < 2) {
                 showError('Please enter your name (at least 2 characters).');
                 return;
             }
 
-            // Service validation
             if (!service) {
                 showError('Please choose a service.');
                 return;
             }
 
-            // Date validation
             if (dateField.value) {
                 const today = new Date();
                 const yyyy = today.getFullYear();
@@ -587,7 +612,7 @@
                 }
             }
 
-            // ---------- PHONE path ----------
+            // ============ PHONE PATH ============
             if (type === 'phone') {
                 const phoneError = validatePhone(phoneField.value);
                 if (phoneError) {
@@ -601,14 +626,23 @@
                 const text = buildMessage(displayPhone);
                 const encoded = encodeURIComponent(text);
 
+                // ✅ FIX 1: WhatsApp goes to BUSINESS_PHONE (not customer's)
+                sendWhatsapp.href = 'https://wa.me/' + BUSINESS_PHONE + '?text=' + encoded;
+
+                // ✅ FIX 2: Telegram — copy message to clipboard, open chat
                 sendTelegram.href = 'https://t.me/' + BUSINESS_TELEGRAM;
-                sendWhatsapp.href = 'https://wa.me/' + fullPhone + '?text=' + encoded;
+                sendTelegram.onclick = function (ev) {
+                    copyToClipboard(text).then(function () {
+                        showCopyToast();
+                    });
+                    // Let Telegram open normally (target=_blank)
+                };
 
                 openModal();
                 return;
             }
 
-            // ---------- EMAIL path ----------
+            // ============ EMAIL PATH ============
             const email = (emailField.value || '').trim();
             const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -626,6 +660,27 @@
 
             window.location.href = mailto;
         });
+
+        /* ---------- Copy toast (small popup) ---------- */
+        function showCopyToast() {
+            let toast = document.getElementById('copyToast');
+            if (!toast) {
+                toast = document.createElement('div');
+                toast.id = 'copyToast';
+                toast.className = 'copy-toast';
+                document.body.appendChild(toast);
+            }
+            const lang = currentLang();
+            toast.textContent = lang === 'am'
+                ? '✅ መልእክቱ ተቀድቷል — በቴሌግራም ውስጥ ይላኩት'
+                : '✅ Message copied — paste it in Telegram';
+            toast.classList.add('show');
+
+            clearTimeout(toast._timeout);
+            toast._timeout = setTimeout(function () {
+                toast.classList.remove('show');
+            }, 3500);
+        }
 
         /* ---------- Modal close handlers ---------- */
         if (closeBtn) closeBtn.addEventListener('click', closeModal);
