@@ -1315,3 +1315,17 @@ a:hover { color: var(--gold); }
         height: 34px;
     }
 }
+
+
+
+/* Hide the Netlify badge */
+.nl-badge-brand,
+.nl-badge-label {
+    display: none !important;
+}
+
+/* Hide the whole Netlify badge container */
+[class*="nl-badge"],
+a[href*="netlify.com"] {
+    display: none !important;
+}
