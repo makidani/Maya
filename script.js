@@ -397,4 +397,276 @@
         updateButton();
     })();
 
+        /* ---------------------------------------------------
+       8. BOOKING FORM — phone/email, validation, modal
+       --------------------------------------------------- */
+    (function initBookingForm() {
+        const form = document.getElementById('bookingForm');
+        const modal = document.getElementById('bookingModal');
+        const overlay = document.getElementById('bookingModalOverlay');
+        const closeBtn = document.getElementById('bookingModalClose');
+        const sendTelegram = document.getElementById('sendTelegram');
+        const sendWhatsapp = document.getElementById('sendWhatsapp');
+        const submitBtn = document.getElementById('submitBtn');
+        const formError = document.getElementById('formError');
+
+        if (!form || !modal) return;
+
+        // Business constants
+        const BUSINESS_PHONE = '251901529662';
+        const BUSINESS_TELEGRAM = 'Makkkk17';
+        const BUSINESS_EMAIL = 'mayamassage@gmail.com';
+
+        // Field references
+        const contactType = document.getElementById('contactType');
+        const phoneRow = document.getElementById('phoneRow');
+        const emailRow = document.getElementById('emailRow');
+        const phoneField = document.getElementById('phoneField');
+        const emailField = document.getElementById('emailField');
+        const nameField = document.getElementById('nameField');
+        const serviceField = document.getElementById('serviceField');
+        const dateField = document.getElementById('preferredDate');
+        const messageField = document.getElementById('messageField');
+
+        /* ---------- Contact type toggle ---------- */
+        function updateContactFields() {
+            const type = contactType.value;
+            if (type === 'phone') {
+                phoneRow.style.display = '';
+                emailRow.style.display = 'none';
+                phoneField.required = true;
+                emailField.required = false;
+                emailField.value = '';
+            } else {
+                phoneRow.style.display = 'none';
+                emailRow.style.display = '';
+                phoneField.required = false;
+                emailField.required = true;
+                phoneField.value = '';
+            }
+            hideError();
+        }
+        contactType.addEventListener('change', updateContactFields);
+        updateContactFields();
+
+        /* ---------- Date: disable past ---------- */
+        function setMinDate() {
+            const today = new Date();
+            const yyyy = today.getFullYear();
+            const mm = String(today.getMonth() + 1).padStart(2, '0');
+            const dd = String(today.getDate()).padStart(2, '0');
+            const todayStr = yyyy + '-' + mm + '-' + dd;
+            dateField.min = todayStr;
+            if (dateField.value && dateField.value < todayStr) {
+                dateField.value = '';
+            }
+        }
+        setMinDate();
+
+        /* ---------- Phone input: filter to digits only ---------- */
+        phoneField.addEventListener('input', function () {
+            // Strip everything except digits
+            let digits = phoneField.value.replace(/\D/g, '');
+
+            // Cap at 10 digits (Ethiopian local max)
+            if (digits.length > 10) digits = digits.slice(0, 10);
+
+            phoneField.value = digits;
+            hideError();
+        });
+
+        /* ---------- Helpers ---------- */
+        function showError(msg) {
+            formError.textContent = msg;
+            formError.style.display = 'block';
+        }
+
+        function hideError() {
+            formError.textContent = '';
+            formError.style.display = 'none';
+        }
+
+        function openModal() {
+            modal.classList.add('open');
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.classList.remove('open');
+            modal.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        }
+
+        /* ---------- Normalize Ethiopian phone number ---------- */
+        // Accepts: 09..., 07..., 9..., 7...  →  returns full international like 251901...
+        function normalizePhone(raw) {
+            let digits = String(raw).replace(/\D/g, '');
+
+            // Strip any leading 251 if user typed it
+            if (digits.startsWith('251') && digits.length > 9) {
+                digits = digits.slice(3);
+            }
+
+            // Remove leading 0 if present
+            if (digits.startsWith('0')) {
+                digits = digits.slice(1);
+            }
+
+            // Must now start with 9 or 7
+            if (!/^[97]/.test(digits)) {
+                return null;
+            }
+
+            // Must be 9 digits after removing 0
+            if (digits.length !== 9) {
+                return null;
+            }
+
+            return '251' + digits;
+        }
+
+        function validatePhone(raw) {
+            const digits = String(raw).replace(/\D/g, '');
+            if (!digits) return 'Please enter your phone number.';
+
+            const full = normalizePhone(digits);
+            if (!full) {
+                return 'Please enter a valid Ethiopian phone number (e.g. 0912 345 678).';
+            }
+            return '';
+        }
+
+        /* ---------- Build the message ---------- */
+        function buildMessage(contactValue) {
+            const name = (nameField.value || '').trim();
+            const service = serviceField.value || '';
+            const date = dateField.value || '';
+            const message = (messageField.value || '').trim();
+
+            let text = 'New Booking Request — Maya Massage\n\n';
+            text += 'Name: ' + name + '\n';
+            text += 'Contact: ' + contactValue + '\n';
+            text += 'Service: ' + service + '\n';
+            if (date) text += 'Preferred Date: ' + date + '\n';
+            if (message) text += 'Message: ' + message + '\n';
+            return text;
+        }
+
+        /* ---------- Handle submit ---------- */
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            hideError();
+
+            const name = (nameField.value || '').trim();
+            const service = serviceField.value;
+            const type = contactType.value;
+
+            // Name validation
+            if (!name || name.length < 2) {
+                showError('Please enter your name (at least 2 characters).');
+                return;
+            }
+
+            // Service validation
+            if (!service) {
+                showError('Please choose a service.');
+                return;
+            }
+
+            // Date validation
+            if (dateField.value) {
+                const today = new Date();
+                const yyyy = today.getFullYear();
+                const mm = String(today.getMonth() + 1).padStart(2, '0');
+                const dd = String(today.getDate()).padStart(2, '0');
+                const todayStr = yyyy + '-' + mm + '-' + dd;
+                if (dateField.value < todayStr) {
+                    showError('Please choose today or a future date.');
+                    return;
+                }
+            }
+
+            // ---------- PHONE path ----------
+            if (type === 'phone') {
+                const phoneError = validatePhone(phoneField.value);
+                if (phoneError) {
+                    showError(phoneError);
+                    return;
+                }
+
+                const fullPhone = normalizePhone(phoneField.value);
+                const displayPhone = '+' + fullPhone;
+
+                const text = buildMessage(displayPhone);
+                const encoded = encodeURIComponent(text);
+
+                sendTelegram.href = 'https://t.me/' + BUSINESS_TELEGRAM;
+                sendWhatsapp.href = 'https://wa.me/' + fullPhone + '?text=' + encoded;
+
+                openModal();
+                return;
+            }
+
+            // ---------- EMAIL path ----------
+            const email = (emailField.value || '').trim();
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!email || !emailPattern.test(email)) {
+                showError('Please enter a valid email address.');
+                return;
+            }
+
+            const text = buildMessage(email);
+            const subject = encodeURIComponent('Booking Request — Maya Massage');
+            const body = encodeURIComponent(text);
+            const mailto = 'mailto:' + BUSINESS_EMAIL +
+                           '?subject=' + subject +
+                           '&body=' + body;
+
+            window.location.href = mailto;
+        });
+
+        /* ---------- Modal close handlers ---------- */
+        if (closeBtn) closeBtn.addEventListener('click', closeModal);
+        if (overlay) overlay.addEventListener('click', closeModal);
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && modal.classList.contains('open')) {
+                closeModal();
+            }
+        });
+    })();
+
+
+    /* ---------------------------------------------------
+       9. DATE INPUT — disable past dates
+       --------------------------------------------------- */
+    (function initDateLimit() {
+        const dateInput = document.getElementById('preferredDate');
+        if (!dateInput) return;
+
+        // Get today's date in YYYY-MM-DD format
+        const today = new Date();
+        const yyyy = today.getFullYear();
+        const mm = String(today.getMonth() + 1).padStart(2, '0');
+        const dd = String(today.getDate()).padStart(2, '0');
+        const todayStr = yyyy + '-' + mm + '-' + dd;
+
+        // Set minimum date to today
+        dateInput.min = todayStr;
+
+        // If user somehow has a past date, clear it
+        if (dateInput.value && dateInput.value < todayStr) {
+            dateInput.value = '';
+        }
+
+        // Block manual typing of past dates
+        dateInput.addEventListener('input', function () {
+            if (dateInput.value && dateInput.value < todayStr) {
+                dateInput.setCustomValidity('Please choose today or a future date.');
+            } else {
+                dateInput.setCustomValidity('');
+            }
+        });
+    })();
 })();
