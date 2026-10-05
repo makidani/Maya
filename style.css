@@ -1,6 +1,6 @@
 /* ===================================================
    Maya Massage — style.css
-   FULL FILE · No hidden content · Everything visible
+   FULL FILE · Cleaned · No duplicates · No conflicts
    =================================================== */
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -49,9 +49,9 @@ a:hover { color: var(--gold); }
 
 /* ============ LANGUAGE TOGGLE ============ */
 .lang-toggle {
-    position: fixed;
-    top: 88px;
-    right: 20px;
+    /* position: fixed;
+    top: 55px;
+    right: 5px; */
     z-index: 1100;
     display: flex;
     background: var(--cream);
@@ -175,7 +175,7 @@ a:hover { color: var(--gold); }
 }
 
 /* =====================================================
-   HERO — single image background
+   HERO
    ===================================================== */
 .hero {
     position: relative;
@@ -260,21 +260,13 @@ a:hover { color: var(--gold); }
     flex-wrap: wrap;
 }
 
-/* ---------- Hero responsive ---------- */
 @media (max-width: 700px) {
-    .hero {
-        min-height: 92vh;
-    }
-    .hero-bg {
-        object-position: center center;
-    }
+    .hero { min-height: 92vh; }
     .hero-buttons {
         flex-direction: column;
         align-items: stretch;
     }
-    .hero-buttons .btn {
-        width: 100%;
-    }
+    .hero-buttons .btn { width: 100%; }
 }
 
 /* ============ BUTTONS ============ */
@@ -520,7 +512,6 @@ a:hover { color: var(--gold); }
     margin: 0;
 }
 
-/* Arrows */
 .team-arrow {
     position: absolute;
     top: 50%;
@@ -553,7 +544,6 @@ a:hover { color: var(--gold); }
 .team-prev { left: 6px; }
 .team-next { right: 6px; }
 
-/* Dots */
 .team-dots {
     display: flex;
     justify-content: center;
@@ -584,7 +574,7 @@ a:hover { color: var(--gold); }
 }
 
 /* =====================================================
-   GALLERY — 10 items with rich captions
+   GALLERY
    ===================================================== */
 .gallery-section {
     position: relative;
@@ -622,7 +612,6 @@ a:hover { color: var(--gold); }
     animation: galleryReveal 0.7s cubic-bezier(.2,.8,.2,1) forwards;
 }
 
-/* Staggered reveal */
 .gallery-item:nth-child(1)  { animation-delay: 0.05s; }
 .gallery-item:nth-child(2)  { animation-delay: 0.10s; }
 .gallery-item:nth-child(3)  { animation-delay: 0.15s; }
@@ -660,7 +649,6 @@ a:hover { color: var(--gold); }
     filter: saturate(1.2) brightness(1.05);
 }
 
-/* Dark gradient overlay on hover */
 .gallery-item::after {
     content: '';
     position: absolute;
@@ -675,7 +663,6 @@ a:hover { color: var(--gold); }
 }
 .gallery-item:hover::after { opacity: 1; }
 
-/* Gold ring on hover */
 .gallery-item::before {
     content: '';
     position: absolute;
@@ -692,7 +679,6 @@ a:hover { color: var(--gold); }
 }
 .gallery-item:hover::before { opacity: 1; }
 
-/* Caption — title + description */
 .gallery-item figcaption {
     position: absolute;
     bottom: 0; left: 0; right: 0;
@@ -729,7 +715,7 @@ a:hover { color: var(--gold); }
 }
 
 /* =====================================================
-   GALLERY LIGHTBOX — modern, arrows, counter, info
+   GALLERY LIGHTBOX
    ===================================================== */
 .gallery-lightbox {
     position: fixed;
@@ -893,44 +879,279 @@ a:hover { color: var(--gold); }
     position: relative;
 }
 
-/* ============ CONTACT ============ */
+/* =====================================================
+   CONTACT + BOOKING FORM
+   ===================================================== */
 .contact-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1.1fr;
     gap: 50px;
-    align-items: center;
+    align-items: flex-start;
+    margin-top: 20px;
 }
+
+/* LEFT: Contact info */
+.contact-info h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    color: var(--dark);
+    margin-bottom: 22px;
+}
+
 .contact-list {
     list-style: none;
-    margin-top: 24px;
+    margin: 0 0 30px 0;
+    padding: 0;
 }
+
 .contact-list li {
-    padding: 12px 0;
-    color: var(--muted);
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 16px 0;
     border-bottom: 1px dashed rgba(201, 162, 39, 0.3);
 }
+
+.contact-list li:last-child {
+    border-bottom: none;
+}
+
+.contact-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--green), var(--green-light));
+    color: #fff;
+    font-size: 1.1rem;
+}
+
+.contact-list li > div {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
 .contact-list strong {
     color: var(--dark);
     font-weight: 600;
-    margin-right: 6px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
 }
 
-.map-wrap {
-    height: 420px;
-    border-radius: 14px;
-    overflow: hidden;
+.contact-list a,
+.contact-list span {
+    color: var(--muted);
+    font-size: 0.95rem;
+    word-break: break-word;
+}
+
+.contact-list a:hover {
+    color: var(--gold);
+}
+
+/* RIGHT: Booking form */
+.booking-form-wrap {
+    background: #fff;
+    border-radius: 16px;
+    padding: 32px 28px;
     box-shadow: var(--shadow-lg);
-    border: 3px solid var(--gold);
-    background: var(--soft);
-}
-.map-iframe {
-    width: 100%;
-    height: 100%;
-    display: block;
-    border: 0;
+    border: 2px solid rgba(201, 162, 39, 0.25);
 }
 
-/* ============ FOOTER ============ */
+.booking-form h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    color: var(--dark);
+    margin-bottom: 22px;
+    text-align: center;
+}
+
+.form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 16px;
+}
+
+.form-row label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--dark);
+    letter-spacing: 0.3px;
+    font-family: 'Poppins', 'Noto Sans Ethiopic', sans-serif;
+}
+
+.form-row input,
+.form-row select,
+.form-row textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid rgba(15, 81, 50, 0.15);
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-family: 'Poppins', 'Noto Sans Ethiopic', sans-serif;
+    color: var(--dark);
+    background: var(--cream);
+    transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+.form-row input:focus,
+.form-row select:focus,
+.form-row textarea:focus {
+    outline: none;
+    border-color: var(--green);
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(15, 81, 50, 0.08);
+}
+
+.form-row textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.btn-block {
+    width: 100%;
+    padding: 14px;
+    font-size: 1rem;
+    margin-top: 8px;
+}
+
+.form-note {
+    font-size: 0.82rem;
+    color: var(--muted);
+    text-align: center;
+    margin-top: 14px;
+    line-height: 1.5;
+    font-style: italic;
+}
+
+/* =====================================================
+   FORM — hints, phone prefix, errors, messages
+   ===================================================== */
+
+/* Small hint under phone input */
+.form-hint {
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin-top: 6px;
+    line-height: 1.4;
+    font-style: italic;
+    display: block;
+}
+
+/* Phone input group with +251 prefix */
+.phone-input-group {
+    display: flex;
+    align-items: stretch;
+    border: 1.5px solid rgba(15, 81, 50, 0.15);
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--cream);
+    transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+.phone-input-group:focus-within {
+    border-color: var(--green);
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(15, 81, 50, 0.08);
+}
+
+.phone-prefix {
+    display: flex;
+    align-items: center;
+    padding: 0 14px;
+    background: linear-gradient(135deg, var(--green), var(--green-light));
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.9rem;
+    font-family: 'Poppins', 'Noto Sans Ethiopic', sans-serif;
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
+}
+
+.phone-input-group input {
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    flex: 1;
+    padding: 12px 14px;
+    font-size: 0.95rem;
+    font-family: 'Poppins', 'Noto Sans Ethiopic', sans-serif;
+    color: var(--dark);
+    outline: none;
+}
+
+.phone-input-group input:focus {
+    outline: none;
+    box-shadow: none !important;
+    background: transparent !important;
+}
+
+/* Inline form error */
+.form-error {
+    margin-top: 14px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-size: 0.88rem;
+    font-weight: 500;
+    text-align: center;
+    background: #fdecea;
+    color: #b5654a;
+    border: 1.5px solid #e53935;
+    animation: formMsgFade 0.3s ease;
+    line-height: 1.5;
+}
+
+/* Form status message */
+.form-message {
+    margin-top: 16px;
+    padding: 14px 18px;
+    border-radius: 10px;
+    font-size: 0.92rem;
+    font-weight: 500;
+    text-align: center;
+    animation: formMsgFade 0.4s ease;
+    transition: opacity 0.3s ease;
+    line-height: 1.5;
+}
+
+.form-message.success {
+    background: #e8f5e9;
+    color: #0f5132;
+    border: 1.5px solid #43a047;
+}
+
+.form-message.error {
+    background: #fdecea;
+    color: #b5654a;
+    border: 1.5px solid #e53935;
+}
+
+@keyframes formMsgFade {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+#submitBtn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+input[type="date"] {
+    font-family: 'Poppins', 'Noto Sans Ethiopic', sans-serif;
+}
+
+/* =====================================================
+   FOOTER
+   ===================================================== */
 .footer {
     background: var(--dark);
     color: rgba(255, 255, 255, 0.75);
@@ -1039,10 +1260,8 @@ a:hover { color: var(--gold); }
 }
 
 /* =====================================================
-   SOCIAL MEDIA
+   SOCIAL MEDIA — footer + contact
    ===================================================== */
-
-/* --- Footer social icons --- */
 .footer-social {
     display: flex;
     gap: 12px;
@@ -1071,7 +1290,6 @@ a:hover { color: var(--gold); }
     box-shadow: 0 6px 20px rgba(201, 162, 39, 0.4);
 }
 
-/* --- Contact section social buttons --- */
 .social-row {
     display: flex;
     gap: 10px;
@@ -1101,58 +1319,233 @@ a:hover { color: var(--gold); }
     filter: brightness(1.08);
 }
 
-.social-btn.telegram  { background: #229ED9; }
-.social-btn.whatsapp  { background: #25D366; } 
-.social-btn.tiktok    { background: #000000; }
-.social-btn.instagram {
-    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-}
+.social-btn.telegram { background: #229ED9; }
+.social-btn.whatsapp { background: #25D366; }
 
-/* --- Responsive --- */
-@media (max-width: 700px) {
-    .footer-social {
-        justify-content: center;
-    }
-    .social-row {
-        justify-content: flex-start;
-    }
-    .social-btn {
-        padding: 9px 14px;
-        font-size: 0.82rem;
-    }
-    .social-btn svg {
-        width: 16px;
-        height: 16px;
-    }
-}
-
-/* ============ FLOATING BUTTONS ============ */
+/* =====================================================
+   FLOATING BUTTONS — WhatsApp + Call
+   ===================================================== */
 .float-btn {
     position: fixed;
     bottom: 22px;
     z-index: 999;
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 14px 18px;
-    border-radius: 50px;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    padding: 0;
+    border-radius: 50%;
     color: white !important;
     text-decoration: none;
     font-weight: 500;
-    font-size: 0.9rem;
-    box-shadow: 0 6px 22px rgba(0,0,0,0.25);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
     transition: transform 0.25s, box-shadow 0.25s;
 }
+
+.float-btn svg {
+    width: 22px;
+    height: 22px;
+}
+
 .float-btn:hover {
     transform: scale(1.08) translateY(-2px);
     box-shadow: 0 12px 30px rgba(0,0,0,0.35);
 }
+
 .float-btn .float-label { white-space: nowrap; }
 
 .whatsapp-float { right: 22px; background: #25D366; }
 .call-float {
     left: 22px;
     background: linear-gradient(135deg, var(--terracotta), #8b3f2a);
+}
+
+/* =====================================================
+   SCROLL TO TOP
+   ===================================================== */
+.scroll-top {
+    position: fixed;
+    bottom: 22px;
+    right: 76px;
+    z-index: 998;
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    border-radius: 50%;
+    background: rgba(15, 81, 50, 0.85);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: opacity 0.25s ease, transform 0.25s ease,
+                background 0.2s, visibility 0.25s;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+.scroll-top.show {
+    opacity: 0.85;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.scroll-top:hover {
+    opacity: 1;
+    background: var(--gold);
+    color: var(--dark);
+    transform: translateY(-2px);
+}
+
+.scroll-top:active {
+    transform: translateY(0) scale(0.94);
+}
+
+/* =====================================================
+   BOOKING MODAL — choose Telegram or WhatsApp
+   ===================================================== */
+.booking-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.booking-modal.open {
+    display: flex;
+}
+
+.booking-modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 42, 28, 0.75);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    animation: modalFadeIn 0.25s ease;
+}
+
+.booking-modal-content {
+    position: relative;
+    z-index: 1;
+    background: #fff;
+    border-radius: 20px;
+    padding: 36px 28px 28px;
+    max-width: 440px;
+    width: 100%;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+    text-align: center;
+    border-top: 5px solid var(--gold);
+    animation: modalSlideUp 0.35s cubic-bezier(.2,.8,.2,1);
+}
+
+@keyframes modalFadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes modalSlideUp {
+    from { opacity: 0; transform: translateY(20px) scale(0.96); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.booking-modal-close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(15, 81, 50, 0.08);
+    color: var(--dark);
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.booking-modal-close:hover {
+    background: var(--gold);
+    color: var(--dark);
+    transform: rotate(90deg);
+}
+
+.booking-modal-content h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    color: var(--dark);
+    margin-bottom: 8px;
+    line-height: 1.25;
+}
+
+.booking-modal-sub {
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-bottom: 24px;
+    line-height: 1.5;
+}
+
+.booking-modal-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 22px;
+}
+
+.modal-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 15px 20px;
+    border-radius: 12px;
+    font-family: 'Poppins', 'Noto Sans Ethiopic', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #fff !important;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+}
+
+.modal-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.25);
+    filter: brightness(1.08);
+}
+
+.modal-btn.telegram { background: #229ED9; }
+.modal-btn.whatsapp { background: #25D366; }
+
+.booking-modal-footer {
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-bottom: 8px;
+    font-style: italic;
+}
+
+.modal-call-link {
+    display: inline-block;
+    color: var(--green);
+    font-weight: 500;
+    font-size: 0.95rem;
+    text-decoration: none;
+}
+
+.modal-call-link:hover {
+    color: var(--gold);
 }
 
 /* =====================================================
@@ -1179,7 +1572,6 @@ a:hover { color: var(--gold); }
     .lang-toggle { top: 82px; right: 14px; font-size: 0.75rem; }
     .lang-opt { padding: 5px 11px; }
 
-    /* Team slider — 2 cards visible */
     .team-card { flex: 0 0 50%; padding: 0 10px; }
     .team-photo { height: 300px; }
     .team-arrow { width: 42px; height: 42px; }
@@ -1187,16 +1579,16 @@ a:hover { color: var(--gold); }
     .team-next { right: 2px; }
     .team-info { min-height: 190px; }
 
-    /* Gallery — 2 columns */
     .gallery { grid-template-columns: 1fr 1fr; gap: 16px; }
 
-    /* Lightbox — tablet */
     .glb-nav { width: 44px; height: 44px; }
     .glb-prev { left: 12px; }
     .glb-next { right: 12px; }
     .glb-title { font-size: 1.35rem; }
     .glb-desc { font-size: 0.9rem; }
     .glb-content img { max-height: 60vh; }
+
+    .booking-form-wrap { padding: 26px 22px; }
 }
 
 /* =====================================================
@@ -1236,14 +1628,6 @@ a:hover { color: var(--gold); }
     .cta-buttons .btn { width: 100%; }
 
     .about-img img { height: 300px; }
-    .map-wrap { height: 300px; }
-
-    .float-btn { padding: 14px; bottom: 16px; gap: 0; }
-    .float-btn .float-label { display: none; }
-    .whatsapp-float { right: 16px; }
-    .call-float { left: 16px; }
-
-    .lang-toggle { top: 78px; right: 12px; }
 
     .footer { padding-top: 50px; }
     .footer-logo-en { font-size: 1.25rem; }
@@ -1253,7 +1637,7 @@ a:hover { color: var(--gold); }
     .footer-tagline,
     .footer-col p { font-size: 0.88rem; }
 
-    /* Team slider — 1 card visible */
+    /* Team slider */
     .team-card { flex: 0 0 100%; padding: 0 4px; }
     .team-photo { height: 360px; }
     .team-arrow { width: 38px; height: 38px; top: 42%; }
@@ -1264,22 +1648,19 @@ a:hover { color: var(--gold); }
     .team-role { font-size: 0.75rem; letter-spacing: 0.6px; }
     .team-bio { font-size: 0.88rem; }
 
-    /* Gallery — 1 column */
+    /* Gallery */
     .gallery { grid-template-columns: 1fr; gap: 14px; }
     .gallery-item { aspect-ratio: 16 / 10; }
-
-    /* Captions always visible on touch */
     .gallery-item figcaption {
         transform: translateY(0);
         opacity: 1;
         padding: 18px 16px 16px;
     }
     .gallery-item::after { opacity: 1; }
-
     .gallery-item figcaption h4 { font-size: 1.1rem; }
     .gallery-item figcaption p { font-size: 0.82rem; }
 
-    /* Lightbox — phone */
+    /* Lightbox */
     .gallery-lightbox { padding: 60px 10px 60px; }
     .glb-nav { width: 40px; height: 40px; }
     .glb-prev { left: 6px; }
@@ -1294,6 +1675,69 @@ a:hover { color: var(--gold); }
     .glb-desc { font-size: 0.85rem; }
     .glb-info { margin-top: 14px; }
     .glb-counter { bottom: 14px; font-size: 0.78rem; }
+
+    /* Lang toggle */
+    .lang-toggle { top: 78px; right: 12px; }
+
+    /* Floating buttons */
+    .float-btn {
+        width: 42px;
+        height: 42px;
+        bottom: 16px;
+    }
+    .float-btn svg {
+        width: 20px;
+        height: 20px;
+    }
+    .whatsapp-float { right: 16px; }
+    .call-float { left: 16px; }
+
+    /* Scroll top */
+    .scroll-top {
+        right: 16px;
+        bottom: 68px;
+        width: 36px;
+        height: 36px;
+    }
+
+    /* Contact list */
+    .contact-list li { padding: 14px 0; }
+    .contact-icon { width: 38px; height: 38px; font-size: 1rem; }
+    .booking-form h3,
+    .contact-info h3 { font-size: 1.3rem; }
+
+    /* Social */
+    .footer-social { justify-content: center; }
+    .social-row { justify-content: flex-start; }
+    .social-btn {
+        padding: 9px 14px;
+        font-size: 0.82rem;
+    }
+    .social-btn svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    /* Phone prefix */
+    .phone-prefix {
+        padding: 0 10px;
+        font-size: 0.85rem;
+    }
+    .form-hint {
+        font-size: 0.75rem;
+    }
+
+    /* Modal */
+    .booking-modal-content {
+        padding: 32px 22px 24px;
+    }
+    .booking-modal-content h3 {
+        font-size: 1.25rem;
+    }
+    .modal-btn {
+        padding: 14px 18px;
+        font-size: 0.95rem;
+    }
 }
 
 /* =====================================================
@@ -1340,66 +1784,5 @@ a:hover { color: var(--gold); }
         opacity: 1;
         transform: none;
         animation: none;
-    }
-}
-
-/* =====================================================
-   SCROLL TO TOP — tiny, corner, minimal
-   ===================================================== */
-.scroll-top {
-    position: fixed;
-    bottom: 22px;
-    right: 82px;
-    z-index: 998;
-
-    width: 38px;
-    height: 38px;
-    padding: 0;
-    border-radius: 50%;
-
-    background: rgba(15, 81, 50, 0.85);
-    color: #fff;
-    border: none;
-    cursor: pointer;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(10px);
-    transition: opacity 0.25s ease, transform 0.25s ease,
-                background 0.2s, visibility 0.25s;
-
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-}
-
-.scroll-top.show {
-    opacity: 0.85;
-    visibility: visible;
-    transform: translateY(0);
-}
-
-.scroll-top:hover {
-    opacity: 1;
-    background: var(--gold);
-    color: var(--dark);
-    transform: translateY(-2px);
-}
-
-.scroll-top:active {
-    transform: translateY(0) scale(0.94);
-}
-
-/* On phone — move to sit just above the WhatsApp button */
-@media (max-width: 700px) {
-    .scroll-top {
-        right: 16px;
-        bottom: 78px;
-        width: 34px;
-        height: 34px;
     }
 }
