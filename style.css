@@ -1,6 +1,8 @@
 /* ===================================================
    Maya Massage — style.css
    FULL FILE · Cleaned · No duplicates · No conflicts
+   With improvements: scroll-margin, tap-highlight,
+   font smoothing, print styles, FAQ touch polish
    =================================================== */
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -19,7 +21,10 @@
     --shadow-lg: 0 12px 32px rgba(15, 81, 50, 0.18);
 }
 
-html { scroll-behavior: smooth; }
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
 
 body {
     font-family: 'Poppins', 'Noto Sans Ethiopic', system-ui, -apple-system, Arial, sans-serif;
@@ -28,6 +33,9 @@ body {
     line-height: 1.65;
     font-weight: 300;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: transparent;
 }
 
 img { max-width: 100%; display: block; }
@@ -47,11 +55,13 @@ p { color: var(--muted); }
 a { color: var(--green); text-decoration: none; transition: color 0.2s; }
 a:hover { color: var(--gold); }
 
+/* ============ SCROLL ANCHOR OFFSET ============ */
+section[id], div[id] {
+    scroll-margin-top: 90px;
+}
+
 /* ============ LANGUAGE TOGGLE ============ */
 .lang-toggle {
-    /* position: fixed;
-    top: 55px;
-    right: 5px; */
     z-index: 1100;
     display: flex;
     background: var(--cream);
@@ -258,15 +268,6 @@ a:hover { color: var(--gold); }
     gap: 14px;
     justify-content: center;
     flex-wrap: wrap;
-}
-
-@media (max-width: 700px) {
-    .hero { min-height: 92vh; }
-    .hero-buttons {
-        flex-direction: column;
-        align-items: stretch;
-    }
-    .hero-buttons .btn { width: 100%; }
 }
 
 /* ============ BUTTONS ============ */
@@ -890,7 +891,6 @@ a:hover { color: var(--gold); }
     margin-top: 20px;
 }
 
-/* LEFT: Contact info */
 .contact-info h3 {
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.5rem;
@@ -956,7 +956,6 @@ a:hover { color: var(--gold); }
     color: var(--gold);
 }
 
-/* RIGHT: Booking form */
 .booking-form-wrap {
     background: #fff;
     border-radius: 16px;
@@ -1035,8 +1034,6 @@ a:hover { color: var(--gold); }
 /* =====================================================
    FORM — hints, phone prefix, errors, messages
    ===================================================== */
-
-/* Small hint under phone input */
 .form-hint {
     font-size: 0.78rem;
     color: var(--muted);
@@ -1046,7 +1043,6 @@ a:hover { color: var(--gold); }
     display: block;
 }
 
-/* Phone input group with +251 prefix */
 .phone-input-group {
     display: flex;
     align-items: stretch;
@@ -1094,7 +1090,6 @@ a:hover { color: var(--gold); }
     background: transparent !important;
 }
 
-/* Inline form error */
 .form-error {
     margin-top: 14px;
     padding: 12px 16px;
@@ -1109,7 +1104,6 @@ a:hover { color: var(--gold); }
     line-height: 1.5;
 }
 
-/* Form status message */
 .form-message {
     margin-top: 16px;
     padding: 14px 18px;
@@ -1267,6 +1261,7 @@ input[type="date"] {
     gap: 12px;
     margin-top: 16px;
     flex-wrap: wrap;
+    align-items: center;
 }
 
 .footer-social a {
@@ -1408,7 +1403,7 @@ input[type="date"] {
 }
 
 /* =====================================================
-   BOOKING MODAL — choose Telegram or WhatsApp
+   BOOKING MODAL
    ===================================================== */
 .booking-modal {
     position: fixed;
@@ -1549,6 +1544,102 @@ input[type="date"] {
 }
 
 /* =====================================================
+   FAQ SECTION
+   ===================================================== */
+.faq-list {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.faq-item {
+    background: #fff;
+    border: 2px solid rgba(201, 162, 39, 0.25);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.faq-item[open] {
+    border-color: var(--gold);
+    box-shadow: var(--shadow-lg);
+}
+
+.faq-item summary {
+    padding: 20px 24px;
+    cursor: pointer;
+    font-family: 'Poppins', 'Noto Sans Ethiopic', sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--dark);
+    list-style: none;
+    position: relative;
+    padding-right: 60px;
+    transition: color 0.2s;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.faq-item summary::-webkit-details-marker { display: none; }
+
+.faq-item summary::after {
+    content: '+';
+    position: absolute;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--green);
+    transition: transform 0.3s, color 0.2s;
+    line-height: 1;
+}
+
+.faq-item[open] summary::after {
+    content: '−';
+    color: var(--gold);
+}
+
+.faq-item summary:hover {
+    color: var(--green);
+}
+
+.faq-item p {
+    padding: 0 24px 22px;
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.75;
+    margin: 0;
+    border-top: 1px dashed rgba(201, 162, 39, 0.3);
+    padding-top: 18px;
+}
+
+/* =====================================================
+   FOOTER SEO LINE
+   ===================================================== */
+.footer-seo-line {
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 0.8rem;
+    line-height: 1.7;
+    max-width: 900px;
+    margin: 0 auto 12px;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.footer-seo-line strong {
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 600;
+}
+
+.footer-copy {
+    display: block;
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.45);
+}
+
+/* =====================================================
    RESPONSIVE — tablet
    ===================================================== */
 @media (max-width: 960px) {
@@ -1569,7 +1660,6 @@ input[type="date"] {
     .footer-col h4 { width: 100%; text-align: center; }
     .section { padding: 70px 0; }
 
-    .lang-toggle { top: 82px; right: 14px; font-size: 0.75rem; }
     .lang-opt { padding: 5px 11px; }
 
     .team-card { flex: 0 0 50%; padding: 0 10px; }
@@ -1676,9 +1766,6 @@ input[type="date"] {
     .glb-info { margin-top: 14px; }
     .glb-counter { bottom: 14px; font-size: 0.78rem; }
 
-    /* Lang toggle */
-    .lang-toggle { top: 78px; right: 12px; }
-
     /* Floating buttons */
     .float-btn {
         width: 42px;
@@ -1738,6 +1825,34 @@ input[type="date"] {
         padding: 14px 18px;
         font-size: 0.95rem;
     }
+
+    /* FAQ */
+    .faq-item summary {
+        padding: 16px 18px;
+        padding-right: 50px;
+        font-size: 0.92rem;
+    }
+    .faq-item summary::after {
+        right: 18px;
+        font-size: 1.4rem;
+    }
+    .faq-item p {
+        padding: 0 18px 18px;
+        padding-top: 14px;
+        font-size: 0.88rem;
+    }
+
+    /* Copy toast */
+    .copy-toast {
+        bottom: 88px;
+        font-size: 0.82rem;
+        padding: 12px 18px;
+    }
+
+    /* Footer SEO */
+    .footer-seo-line {
+        font-size: 0.72rem;
+    }
 }
 
 /* =====================================================
@@ -1771,6 +1886,41 @@ input[type="date"] {
 }
 
 /* =====================================================
+   COPY TOAST
+   ===================================================== */
+.copy-toast {
+    position: fixed;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    z-index: 100000;
+
+    background: linear-gradient(135deg, var(--green), var(--green-light));
+    color: #fff;
+    font-family: 'Poppins', 'Noto Sans Ethiopic', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 14px 22px;
+    border-radius: 40px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+
+    max-width: 90vw;
+    text-align: center;
+    line-height: 1.4;
+    pointer-events: none;
+}
+
+.copy-toast.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* =====================================================
    REDUCED MOTION
    ===================================================== */
 @media (prefers-reduced-motion: reduce) {
@@ -1785,4 +1935,39 @@ input[type="date"] {
         transform: none;
         animation: none;
     }
+}
+
+/* =====================================================
+   PRINT STYLES
+   ===================================================== */
+@media print {
+    .navbar,
+    .float-btn,
+    .scroll-top,
+    .lang-toggle,
+    .booking-modal,
+    .gallery-lightbox,
+    .copy-toast,
+    .cta-buttons,
+    .social-row,
+    .footer-social,
+    .footer-seo-line,
+    .hero-buttons {
+        display: none !important;
+    }
+    .hero {
+        min-height: auto;
+        padding: 40px 20px;
+        background: #0f5132;
+    }
+    body { color: #000; }
+    a { color: #000; text-decoration: underline; }
+    .card,
+    .faq-item,
+    .booking-form-wrap {
+        box-shadow: none;
+        border: 1px solid #ccc;
+        page-break-inside: avoid;
+    }
+    .section { padding: 20px 0; }
 }
