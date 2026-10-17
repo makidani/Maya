@@ -315,20 +315,52 @@
             startTeamTimer();
         }
 
-        const prevBtn = document.getElementById('teamPrev');
-        const nextBtn = document.getElementById('teamNext');
-        if (prevBtn) {
-            prevBtn.addEventListener('click', function () {
-                prevTeamSlide();
-                restartTeamTimer();
-            });
-        }
-        if (nextBtn) {
-            nextBtn.addEventListener('click', function () {
-                nextTeamSlide();
-                restartTeamTimer();
-            });
-        }
+        /* --- Swipe & Drag Support (Mouse + Touch) --- */
+        let pointerStartX = 0;
+        let isDragging = false;
+
+        teamTrack.addEventListener('pointerdown', function(e) {
+            pointerStartX = e.clientX; // Capture X position of mouse/finger
+            isDragging = true;
+            stopTeamTimer(); // Pause auto-slide
+            
+            // Change cursor to indicate dragging
+            teamTrack.style.cursor = 'grabbing';
+        });
+
+        teamTrack.addEventListener('pointerup', function(e) {
+            if (!isDragging) return;
+            
+            const pointerEndX = e.clientX;
+            const diff = pointerStartX - pointerEndX;
+            const swipeThreshold = 50; // Minimum pixels to count as a swipe
+
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    // Dragged Left -> Next
+                    nextTeamSlide();
+                } else {
+                    // Dragged Right -> Prev
+                    prevTeamSlide();
+                }
+            }
+            
+            isDragging = false;
+            teamTrack.style.cursor = 'grab'; // Reset cursor
+            startTeamTimer(); // Resume auto-slide
+        });
+
+        // Stop dragging if the pointer leaves the slider area
+        teamTrack.addEventListener('pointerleave', function() {
+            if (isDragging) {
+                isDragging = false;
+                teamTrack.style.cursor = 'grab';
+                startTeamTimer();
+            }
+        });
+        
+        // Set initial cursor to indicate it's draggable
+        teamTrack.style.cursor = 'grab';
 
         buildDots();
         updateTeamSlider();
@@ -397,7 +429,7 @@
         updateButton();
     })();
 
-        /* ---------------------------------------------------
+    /* ---------------------------------------------------
        8. BOOKING FORM — phone/email, validation, modal
        --------------------------------------------------- */
     (function initBookingForm() {
@@ -626,10 +658,10 @@
                 const text = buildMessage(displayPhone);
                 const encoded = encodeURIComponent(text);
 
-                // ✅ FIX 1: WhatsApp goes to BUSINESS_PHONE (not customer's)
+                // ✅ WhatsApp goes to BUSINESS_PHONE (not customer's)
                 sendWhatsapp.href = 'https://wa.me/' + BUSINESS_PHONE + '?text=' + encoded;
 
-                // ✅ FIX 2: Telegram — copy message to clipboard, open chat
+                // ✅ Telegram — copy message to clipboard, open chat
                 sendTelegram.href = 'https://t.me/' + BUSINESS_TELEGRAM;
                 sendTelegram.onclick = function (ev) {
                     copyToClipboard(text).then(function () {
