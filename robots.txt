@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mayamassage.netlify.app/sitemap.xml
+Sitemap: https://mayamassage.vercel.app/sitemap.xml
